@@ -189,7 +189,6 @@ public class Datenbank {
         
         Statement stmt = null; 
         List <Patlog> myPatlogs = new ArrayList<>();
-        System.out.println("jjoio");
        
         for (Aufenthalte a : aufenthaltListe){
             Patlog p_log = new Patlog();
