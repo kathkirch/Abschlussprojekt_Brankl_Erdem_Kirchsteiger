@@ -179,7 +179,6 @@ public class Datenbank {
                 aufenthaltListe.add(a);
             
                 deletePatQueue(meinePat);
-                
             }
             meinePat.clear();
         }        
