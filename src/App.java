@@ -1,6 +1,7 @@
 
 
 import java.util.List;
+import javax.swing.SwingUtilities;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,6 +39,15 @@ public class App {
         System.out.println("Meine Patlogs aus der DB: " + myPatlogDB);
         
         myDB.dbSchliessen();
+        
+        ///////////////////////////////////////////////
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new GUI2();
+                new GUI1();
+            }
+        });
         
     } 
 }

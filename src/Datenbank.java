@@ -316,11 +316,11 @@ public class Datenbank {
         }
     }  //verwendet in PatientToAufenthalt();
     
-    public List <Patlog> readPatlog(){
+    public static List <Patlog> readPatlog(){
 
         List <Patlog> patlogsDB = new ArrayList<>();
         Statement stmt = null;
-        ResultSet rs= null;
+        ResultSet rs = null;
 
         try{
             String dbTbl = "patlog";
