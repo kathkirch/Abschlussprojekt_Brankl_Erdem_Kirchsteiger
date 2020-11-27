@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,14 +26,15 @@ public class GUI2 {
     
     JFrame frame = new JFrame("AUFENTHALTE");
     String[] columns = new String[] {"Aufnahme Datum", "Vorname", "Nachname", "AZ", "Mod.At"};
+    
+    List <Aufenthalte> myAufenthalte = Datenbank.readAufenthalteDB();
 
-
-    Object[][] data = new Object[][] {
+    /*Object[][] data = new Object[][] {
             {1, "John", "Rambo", "1", "1.0.1"},
             {2, "John", "Rambo", "1", "1.0.1"},
             {3, "John", "Rambo", "1", "1.0.1"},
-    };
-
+    };*/
+    Object [][] data = initAufenthalte(myAufenthalte);
     JTable tableModel = new JTable(data, columns);
     JPanel panel = new JPanel(); 
     JPanel panel2 = new JPanel(); 
@@ -43,12 +45,25 @@ public class GUI2 {
 
     JRadioButton radioButton1 = new JRadioButton();
     JRadioButton radioButton2 = new JRadioButton();
+    
+    public Object [][] initAufenthalte(List <Aufenthalte> aufenthalte){
+        Object [][] data = new Object[aufenthalte.size()][];
+        
+        int i = 0;
+        for(Aufenthalte a : aufenthalte){
+            data[i] = new Object[]{a.getAufdat(), a.getVorname(), a.getNachname(),
+                                    a.getAz(), a.getModdat()};
+            i = i + 1;
+        }
+        return data;
+    }
+    
     public void setObject(Object[][] dataFromOut) {
         data = dataFromOut;
     }
 
     public GUI2() {
-         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 500);
 
 

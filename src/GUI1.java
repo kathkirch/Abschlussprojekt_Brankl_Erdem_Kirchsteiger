@@ -33,12 +33,10 @@ public class GUI1 {
     String[] columns = new String[] {"Zeitpunkt", "Aktion", "AZ"};
 
 //TODO:////////// HERE YOU CAN ADD YOUR DATA!!!////////////////////////////////////////////////////////////////////////
-    Object[][] data = new Object[][] {
-            {1, "John", false },
-            {2, "Rambo", false },
-            {3, "Rocky", true },
-    };
-
+    
+    List <Patlog> myPatlogs = Datenbank.readPatlog();
+    
+    Object [][] data = initPatlogs(myPatlogs);
     JTable tableModel = new JTable(data, columns);
     JPanel panel = new JPanel(); // the panel is not visible in output
     JPanel panel2 = new JPanel(); // the panel is not visible in output
@@ -48,6 +46,17 @@ public class GUI1 {
 
     JRadioButton radioButton1 = new JRadioButton();
     JRadioButton radioButton2 = new JRadioButton();
+    
+    public Object [][] initPatlogs(List <Patlog> patlogs){
+        Object [][] data = new Object[patlogs.size()][];
+        
+        int i = 0;
+        for(Patlog p : patlogs){
+            data[i] = new Object[]{p.getModdat(), p.getAktion(), p.getAz()};
+            i = i + 1;
+        }
+        return data;
+    }
     
     public void setObject(Object[][] dataFromOut) {
         data = dataFromOut;
@@ -64,6 +73,7 @@ public class GUI1 {
         tableModel.setPreferredScrollableViewportSize(tableModel.getPreferredSize());
         tableModel.setFillsViewportHeight(true);
         radioButton1.setSelected(true);
+
 //TODO:////////// HERE YOU CAN FILTER YOUR DATA!!!//////////////////////////////////////////////////////////////////////
         radioButton1.addActionListener(new ActionListener() {
             @Override
@@ -85,6 +95,7 @@ public class GUI1 {
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                
                 System.out.println("BLBLBLBLBLBLBLBL");
             }
         });

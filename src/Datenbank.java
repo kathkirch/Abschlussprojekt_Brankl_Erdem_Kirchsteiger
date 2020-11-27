@@ -101,7 +101,7 @@ public class Datenbank {
         return patListe; 
     } 
     
-    public List <Aufenthalte> readAufenthalteDB () {
+    public static List <Aufenthalte> readAufenthalteDB () {
         
         Statement stmt = null;
         ResultSet rs = null;
@@ -343,6 +343,7 @@ public class Datenbank {
                 patlogsDB.add(patlog);
             }    
         }catch(SQLException ex){
+            System.out.println(ex);
             System.out.println("Tabelle 'Patlogs' in DB konnte nicht gelesen werden!");
         }finally {
             if (stmt != null) {

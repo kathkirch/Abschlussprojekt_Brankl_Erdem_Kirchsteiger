@@ -29,17 +29,15 @@ public class App {
         List <Aufenthalte> aufenthaltListe = myDB.patientToAufenthalt(patienten);
         System.out.println("Patienten in Patqueue" + patienten);
         
-        List <Aufenthalte> myDBaufenthalte = myDB.readAufenthalteDB();
-        System.out.println("Meine Aufenthalte aus der DB" + myDBaufenthalte);
+        //List <Aufenthalte> myDBaufenthalte = myDB.readAufenthalteDB();
+        //System.out.println("Meine Aufenthalte aus der DB" + myDBaufenthalte);
         
         List <Patlog> meinePatlogListe = myDB.patientToAufenthaltDB(aufenthaltListe);
         myDB.insertPatlogDB(meinePatlogListe);
         
-        List <Patlog> myPatlogDB = myDB.readPatlog();
-        System.out.println("Meine Patlogs aus der DB: " + myPatlogDB);
-        
-        myDB.dbSchliessen();
-        
+        //List <Patlog> myPatlogDB = myDB.readPatlog();
+        //System.out.println("Meine Patlogs aus der DB: " + myPatlogDB);
+
         ///////////////////////////////////////////////
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -49,5 +47,6 @@ public class App {
             }
         });
         
+        //myDB.dbSchliessen();
     } 
 }
