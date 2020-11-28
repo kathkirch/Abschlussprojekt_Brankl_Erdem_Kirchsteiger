@@ -9,10 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.sql.Connection;
 
 /**
  *
@@ -31,7 +26,7 @@ public class GUI1 {
     
     JFrame frame = new JFrame("LOGS");
     String[] columns = new String[] {"Zeitpunkt", "Aktion", "AZ"};
-
+     
 //TODO:////////// HERE YOU CAN ADD YOUR DATA!!!////////////////////////////////////////////////////////////////////////
     
     List <Patlog> myPatlogs = Datenbank.readPatlog();
@@ -43,7 +38,7 @@ public class GUI1 {
     JLabel label = new JLabel("Alle");
     JLabel label2 = new JLabel("Nur Akt");
     JButton refresh = new JButton("Refresh");
-
+    
     JRadioButton radioButton1 = new JRadioButton();
     JRadioButton radioButton2 = new JRadioButton();
     
@@ -61,28 +56,34 @@ public class GUI1 {
     public void setObject(Object[][] dataFromOut) {
         data = dataFromOut;
     }
-
-
+   
     public GUI1() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 500);
+        frame.setSize(600, 700);
+        
+        JScrollPane js = new JScrollPane(tableModel);
 
-//        JTable table = new JTable(data, columns);
-        tableModel.setPreferredSize(new Dimension(400,350));
-        tableModel.setPreferredScrollableViewportSize(tableModel.getPreferredSize());
+        tableModel.setPreferredSize(new Dimension(500,650));
         tableModel.setFillsViewportHeight(true);
+        
+        if (tableModel.getPreferredSize().getHeight() < js.getPreferredSize().getHeight()){
+            tableModel.setPreferredSize(js.getPreferredSize());
+        }
+        
+        tableModel.setEnabled(false);
         radioButton1.setSelected(true);
-
+        
+        js.setVisible(true);
+        
 //TODO:////////// HERE YOU CAN FILTER YOUR DATA!!!//////////////////////////////////////////////////////////////////////
         radioButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                radioButton2.setSelected(false);
+                radioButton2.setSelected(false); 
             }
         });
-
-
+        
         radioButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -91,7 +92,6 @@ public class GUI1 {
         });
 
 //TODO://///////////// HERE YOU CAN ADD DATA FROM YOUR DATA BASE ///////////////////////////////////////////////////////
-
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -112,8 +112,5 @@ public class GUI1 {
         frame.getContentPane().add(BorderLayout.NORTH, panel);
         frame.getContentPane().add(BorderLayout.CENTER, panel2);
         frame.setVisible(true);
-
     }
-
 }
-

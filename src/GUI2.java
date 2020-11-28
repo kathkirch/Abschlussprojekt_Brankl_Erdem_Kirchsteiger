@@ -29,11 +29,6 @@ public class GUI2 {
     
     List <Aufenthalte> myAufenthalte = Datenbank.readAufenthalteDB();
 
-    /*Object[][] data = new Object[][] {
-            {1, "John", "Rambo", "1", "1.0.1"},
-            {2, "John", "Rambo", "1", "1.0.1"},
-            {3, "John", "Rambo", "1", "1.0.1"},
-    };*/
     Object [][] data = initAufenthalte(myAufenthalte);
     JTable tableModel = new JTable(data, columns);
     JPanel panel = new JPanel(); 
@@ -42,7 +37,7 @@ public class GUI2 {
     JLabel label2 = new JLabel("AZ");
     JLabel label3 = new JLabel("Name");
     JButton refresh = new JButton("Refresh");
-
+    
     JRadioButton radioButton1 = new JRadioButton();
     JRadioButton radioButton2 = new JRadioButton();
     
@@ -64,13 +59,21 @@ public class GUI2 {
 
     public GUI2() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 500);
+        frame.setSize(600, 700);
+        
+        JScrollPane js = new JScrollPane(tableModel);
 
-
-        tableModel.setPreferredSize(new Dimension(400,350));
-        tableModel.setPreferredScrollableViewportSize(tableModel.getPreferredSize());
+        tableModel.setPreferredSize(new Dimension(500,600));
         tableModel.setFillsViewportHeight(true);
+        
+        if (tableModel.getPreferredSize().getHeight() < js.getPreferredSize().getHeight()){
+            tableModel.setPreferredSize(js.getPreferredSize());
+        }
+        
+        tableModel.setEnabled(false);
         radioButton1.setSelected(true);
+        
+        js.setVisible(true);
 
         radioButton1.addActionListener(new ActionListener() {
             @Override
@@ -78,26 +81,22 @@ public class GUI2 {
                 radioButton2.setSelected(false);
             }
         });
-
-
+        
         radioButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 radioButton1.setSelected(false);
             }
         });
-
-
-
+        
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 System.out.println("BLBLBLBLBLBLBLBL");
             }
         });
-
-
-        panel.add(label); 
+        
+        panel.add(label); //Components Added using Flow Layout
         panel.add(radioButton1);
         panel.add(label2);
         panel.add(radioButton2);
@@ -105,19 +104,10 @@ public class GUI2 {
 
         panel.add(refresh);
         panel2.add(new JScrollPane(tableModel));
-
         
+        //Adding Components to the frame
         frame.getContentPane().add(BorderLayout.NORTH, panel);
         frame.getContentPane().add(BorderLayout.CENTER, panel2);
         frame.setVisible(true);
-
     }
-
 }
-
-
-
-        
-        
-    
-    
