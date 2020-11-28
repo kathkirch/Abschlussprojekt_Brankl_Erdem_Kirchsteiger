@@ -22,7 +22,7 @@ import javax.swing.JTable;
  *
  * @author ceran
  */
-public class GUI1 {
+public class GUI1 extends Thread{
     
     JFrame frame = new JFrame("LOGS");
     String[] columns = new String[] {"Zeitpunkt", "Aktion", "AZ"};
@@ -60,11 +60,11 @@ public class GUI1 {
     public GUI1() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 700);
+        frame.setSize(800, 700);
         
         JScrollPane js = new JScrollPane(tableModel);
 
-        tableModel.setPreferredSize(new Dimension(500,650));
+        tableModel.setPreferredSize(new Dimension(700,800));
         tableModel.setFillsViewportHeight(true);
         
         if (tableModel.getPreferredSize().getHeight() < js.getPreferredSize().getHeight()){
