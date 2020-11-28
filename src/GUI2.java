@@ -59,11 +59,11 @@ public class GUI2 {
 
     public GUI2() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 700);
+        frame.setSize(800, 700);
         
         JScrollPane js = new JScrollPane(tableModel);
 
-        tableModel.setPreferredSize(new Dimension(500,600));
+        tableModel.setPreferredSize(new Dimension(700,800));
         tableModel.setFillsViewportHeight(true);
         
         if (tableModel.getPreferredSize().getHeight() < js.getPreferredSize().getHeight()){
