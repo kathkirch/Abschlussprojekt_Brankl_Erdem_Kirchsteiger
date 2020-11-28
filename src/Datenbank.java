@@ -101,7 +101,7 @@ public class Datenbank {
         return patListe; 
     } 
     
-    public List <Aufenthalte> readAufenthalteDB () {
+    public static List <Aufenthalte> readAufenthalteDB () {
         
         Statement stmt = null;
         ResultSet rs = null;
@@ -179,7 +179,6 @@ public class Datenbank {
                 aufenthaltListe.add(a);
             
                 deletePatQueue(meinePat);
-                
             }
             meinePat.clear();
         }        
@@ -190,7 +189,6 @@ public class Datenbank {
         
         Statement stmt = null; 
         List <Patlog> myPatlogs = new ArrayList<>();
-        System.out.println("jjoio");
        
         for (Aufenthalte a : aufenthaltListe){
             Patlog p_log = new Patlog();
@@ -318,11 +316,11 @@ public class Datenbank {
         }
     }  //verwendet in PatientToAufenthalt();
     
-    public List <Patlog> readPatlog(){
+    public static List <Patlog> readPatlog(){
 
         List <Patlog> patlogsDB = new ArrayList<>();
         Statement stmt = null;
-        ResultSet rs= null;
+        ResultSet rs = null;
 
         try{
             String dbTbl = "patlog";
@@ -345,6 +343,7 @@ public class Datenbank {
                 patlogsDB.add(patlog);
             }    
         }catch(SQLException ex){
+            System.out.println(ex);
             System.out.println("Tabelle 'Patlogs' in DB konnte nicht gelesen werden!");
         }finally {
             if (stmt != null) {

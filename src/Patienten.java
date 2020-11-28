@@ -23,7 +23,7 @@ public class Patienten {
     private String nachname;
     private String az;
     private LocalDate aufdat; 
-    public static Connection coni;
+    public static Connection con;
     
     public Patienten() {
         this.id = id;

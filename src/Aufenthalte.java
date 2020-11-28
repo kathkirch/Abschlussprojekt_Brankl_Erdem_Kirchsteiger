@@ -52,5 +52,4 @@ public class Aufenthalte extends Patienten {
     public String toString(){
         return super.toString() + " | letzte Änderung: " + moddat; 
     }
-   
 }
