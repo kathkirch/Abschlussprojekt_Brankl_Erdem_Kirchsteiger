@@ -1,5 +1,6 @@
 
 
+
 import java.util.List;
 import javax.swing.SwingUtilities;
 
@@ -23,27 +24,32 @@ public class App {
         
         Datenbank myDB = new Datenbank();
         
+        //new PatqueueEingabe();
+        
         myDB.dbVerbinden();
         
         List <Patienten> patienten = myDB.patqueueAuslesen();
         List <Aufenthalte> aufenthaltListe = myDB.patientToAufenthalt(patienten);
         System.out.println("Patienten in Patqueue" + patienten);
         
-        //List <Aufenthalte> myDBaufenthalte = myDB.readAufenthalteDB();
-        //System.out.println("Meine Aufenthalte aus der DB" + myDBaufenthalte);
+        List <Aufenthalte> myDBaufenthalte = myDB.readAufenthalteDB();
+        System.out.println("Meine Aufenthalte aus der DB" + myDBaufenthalte);
         
         List <Patlog> meinePatlogListe = myDB.patientToAufenthaltDB(aufenthaltListe);
         myDB.insertPatlogDB(meinePatlogListe);
         
-        //List <Patlog> myPatlogDB = myDB.readPatlog();
-        //System.out.println("Meine Patlogs aus der DB: " + myPatlogDB);
+        List <Patlog> myPatlogDB = myDB.readPatlog();
+        System.out.println("Meine Patlogs aus der DB: " + myPatlogDB);
 
         ///////////////////////////////////////////////
         SwingUtilities.invokeLater(new Runnable() {
             @Override
+            
             public void run() {
+                
                 new GUI2();
                 new GUI1();
+                
             }
         });
         
