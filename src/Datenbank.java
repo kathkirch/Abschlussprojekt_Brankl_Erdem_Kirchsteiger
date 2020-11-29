@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.Statement;
-//import java.util.Date;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.sql.PreparedStatement;
@@ -56,7 +55,7 @@ public class Datenbank {
         }
     }
     
-    public List <Patienten> patqueueAuslesen() { 
+    public static List <Patienten> patqueueAuslesen() { 
         
         List <Patienten> patListe = new ArrayList<>();
         ResultSet rs = null;
@@ -66,35 +65,34 @@ public class Datenbank {
         try{
             stmt = con.createStatement();
             rs = stmt. executeQuery("SELECT * FROM " + dbTbl );
-            //System.out.println(rs.next());
 
-            //if (rs != null){
-                while(rs.next()){
-                    try{
-                        Thread.sleep(15);
-                        // Werte von Tabelle lesen und in Variablen speichern
-                        int dbid = rs.getInt("id");
-                        String dbVname = rs.getString("Vorname");
-                        String dbNname = rs.getString("Nachname");
-                        String dbAz = rs.getString("AZ");
-                        Date dbAufdat = rs.getDate("Aufdat");
+            while(rs.next()){
+                try{
+                    
+                    Thread.sleep(15);
+                    
+                    // Werte von Tabelle lesen und in Variablen speichern
+                    int dbid = rs.getInt("id");
+                    String dbVname = rs.getString("Vorname");
+                    String dbNname = rs.getString("Nachname");
+                    String dbAz = rs.getString("AZ");
+                    Date dbAufdat = rs.getDate("Aufdat");
 
-                        // neues PatientenObjekt erzeugen mit Werten von Tabelle
-                        Patienten p = new Patienten();
-                        p.setId(dbid);
-                        p.setVorname(dbVname);
-                        p.setNachname(dbNname);
-                        p.setAz(dbAz);
-                        p.setAufdat(dbAufdat.toLocalDate());
+                    // neues PatientenObjekt erzeugen mit Werten von Tabelle
+                    Patienten p = new Patienten();
+                    p.setId(dbid);
+                    p.setVorname(dbVname);
+                    p.setNachname(dbNname);
+                    p.setAz(dbAz);
+                    p.setAufdat(dbAufdat.toLocalDate());
 
-                        //PatientenObjekt in patListe speichern
-                        patListe.add(p);
+                    //PatientenObjekt in patListe speichern
+                    patListe.add(p);
 
-                    }catch(Exception e){
-                        System.out.println(e);
-                    } 
-                }
-            //}
+                }catch(Exception e){
+                    System.out.println(e);
+                } 
+            }
         }catch(SQLException ex) {
             System.out.println(ex);
         }
@@ -144,7 +142,7 @@ public class Datenbank {
         return aufenthalteDB;
     }  
      
-    public List <Aufenthalte> patientToAufenthalt (List<Patienten> meinePat) { //verwendet deletePatQueue();
+    public static List <Aufenthalte> patientToAufenthalt (List<Patienten> meinePat) { //verwendet deletePatQueue();
         
         //erstellt neue Liste vom Typ Aufenthalte
         List <Aufenthalte> aufenthaltListe = new ArrayList<>();
@@ -177,15 +175,14 @@ public class Datenbank {
 
                 //AufenthaltObjekt zur AufenthaltListe hinzufügen
                 aufenthaltListe.add(a);
-            
-                deletePatQueue(meinePat);
             }
+            deletePatQueue(meinePat);
             meinePat.clear();
         }        
         return aufenthaltListe;
     } 
     
-    public List <Patlog> patientToAufenthaltDB (List<Aufenthalte> aufenthaltListe ){ //verwendet updateAufenthalte
+    public static List <Patlog> patientToAufenthaltDB (List<Aufenthalte> aufenthaltListe ){ //verwendet updateAufenthalte
         
         Statement stmt = null; 
         List <Patlog> myPatlogs = new ArrayList<>();
@@ -227,7 +224,7 @@ public class Datenbank {
         return myPatlogs;
     } 
     
-    public void updateAufenthalte (List <Aufenthalte> meineAufenthalte) {
+    public static void updateAufenthalte (List <Aufenthalte> meineAufenthalte) {
          
         Statement stmt = null;
         ResultSet rs = null;
@@ -265,7 +262,7 @@ public class Datenbank {
         }   
     } //verwendet in patientToAufenthaltDB();
     
-    public void insertPatlogDB (List <Patlog> myPatlogs){
+    public static void insertPatlogDB (List <Patlog> myPatlogs){
         
         Statement stmt = null; 
         
@@ -296,7 +293,7 @@ public class Datenbank {
         }
     } 
     
-    public void deletePatQueue (List <Patienten> meinePat){
+    public static void deletePatQueue (List <Patienten> meinePat){
         
         Statement stmt = null;
         String dbTbl = "patqueue";
@@ -356,10 +353,9 @@ public class Datenbank {
         }
         return patlogsDB;
     }
-  
+   
 } 
-
-    
+   
     /*
     public void deleteDB(){
         
