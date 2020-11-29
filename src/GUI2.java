@@ -92,7 +92,7 @@ public class GUI2 extends Thread{
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                System.out.println("BLBLBLBLBLBLBLBL");
+                
             }
         });
         

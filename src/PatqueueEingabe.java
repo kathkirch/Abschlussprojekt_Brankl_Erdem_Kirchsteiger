@@ -8,7 +8,7 @@ import java.sql.*;
 import javax.swing.*;
 
 
-public class PatqueueEingabe extends javax.swing.JFrame  {
+public class PatqueueEingabe extends javax.swing.JFrame implements Runnable {
 
     private static Connection con;
     
@@ -200,12 +200,23 @@ public class PatqueueEingabe extends javax.swing.JFrame  {
         initPatqueue();
     }//GEN-LAST:event_jButton_AddPatientActionPerformed
 
-    
-    /*
-    public static void main(String args[]) {
-    
-        //dbVerbinden2();
-        
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_AddPatient;
+    private javax.swing.JComboBox<String> jComboBox_Aufdat_dd;
+    private javax.swing.JComboBox<String> jComboBox_Aufdat_mm;
+    private javax.swing.JComboBox<String> jComboBox_Aufdat_yyyy;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel_AZ;
+    private javax.swing.JLabel jLabel_Aufdat;
+    private javax.swing.JLabel jLabel_Nname;
+    private javax.swing.JLabel jLabel_Vname;
+    private javax.swing.JTextField jTextField_AZ;
+    private javax.swing.JTextField jTextField_Nname;
+    private javax.swing.JTextField jTextField_Vname;
+    // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -222,36 +233,7 @@ public class PatqueueEingabe extends javax.swing.JFrame  {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PatqueueEingabe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PatqueueEingabe().setVisible(true);
-            }
-        });
-    }*/
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_AddPatient;
-    private javax.swing.JComboBox<String> jComboBox_Aufdat_dd;
-    private javax.swing.JComboBox<String> jComboBox_Aufdat_mm;
-    private javax.swing.JComboBox<String> jComboBox_Aufdat_yyyy;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel_AZ;
-    private javax.swing.JLabel jLabel_Aufdat;
-    private javax.swing.JLabel jLabel_Nname;
-    private javax.swing.JLabel jLabel_Vname;
-    private javax.swing.JTextField jTextField_AZ;
-    private javax.swing.JTextField jTextField_Nname;
-    private javax.swing.JTextField jTextField_Vname;
-    // End of variables declaration//GEN-END:variables
-
- 
-
-
-
-
-}
-
+        
+        new PatqueueEingabe().setVisible(true); 
+    }
 

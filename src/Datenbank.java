@@ -34,7 +34,7 @@ public class Datenbank {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Jdbc Treiber geladen");
+            System.out.println("JDBC Treiber geladen");
             con = DriverManager.getConnection("jdbc:mysql://10.25.2.145:3306/branklth19?user=branklth19&password=geb19&serverTimezone=CET");
             System.out.println("Verbindung zur Datenbank hergestellt");
         
@@ -43,7 +43,7 @@ public class Datenbank {
             System.out.println("Verbindung zum Server fehlgeschlagen");
             System.exit(1);
         }
-    }
+    } // verwendet in class App
     
     public static void dbSchliessen() {
         try {
@@ -53,7 +53,7 @@ public class Datenbank {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-    }
+    } // verwendet in class APP
     
     public static List <Patienten> patqueueAuslesen() { 
         
@@ -67,37 +67,30 @@ public class Datenbank {
             rs = stmt. executeQuery("SELECT * FROM " + dbTbl );
 
             while(rs.next()){
-                try{
-                    
-                    Thread.sleep(15);
-                    
-                    // Werte von Tabelle lesen und in Variablen speichern
-                    int dbid = rs.getInt("id");
-                    String dbVname = rs.getString("Vorname");
-                    String dbNname = rs.getString("Nachname");
-                    String dbAz = rs.getString("AZ");
-                    Date dbAufdat = rs.getDate("Aufdat");
+                
+                // Werte von Tabelle lesen und in Variablen speichern
+                int dbid = rs.getInt("id");
+                String dbVname = rs.getString("Vorname");
+                String dbNname = rs.getString("Nachname");
+                String dbAz = rs.getString("AZ");
+                Date dbAufdat = rs.getDate("Aufdat");
 
-                    // neues PatientenObjekt erzeugen mit Werten von Tabelle
-                    Patienten p = new Patienten();
-                    p.setId(dbid);
-                    p.setVorname(dbVname);
-                    p.setNachname(dbNname);
-                    p.setAz(dbAz);
-                    p.setAufdat(dbAufdat.toLocalDate());
+                // neues PatientenObjekt erzeugen mit Werten von Tabelle
+                Patienten p = new Patienten();
+                p.setId(dbid);
+                p.setVorname(dbVname);
+                p.setNachname(dbNname);
+                p.setAz(dbAz);
+                p.setAufdat(dbAufdat.toLocalDate());
 
-                    //PatientenObjekt in patListe speichern
-                    patListe.add(p);
-
-                }catch(Exception e){
-                    System.out.println(e);
-                } 
+                //PatientenObjekt in patListe speichern
+                patListe.add(p);
             }
         }catch(SQLException ex) {
             System.out.println(ex);
         }
         return patListe; 
-    } 
+    } // verwendet in class RunDB
     
     public static List <Aufenthalte> readAufenthalteDB () {
         
@@ -140,7 +133,7 @@ public class Datenbank {
             }  
         }
         return aufenthalteDB;
-    }  
+    }  //verwendet in GUI2
      
     public static List <Aufenthalte> patientToAufenthalt (List<Patienten> meinePat) { //verwendet deletePatQueue();
         
@@ -180,7 +173,7 @@ public class Datenbank {
             meinePat.clear();
         }        
         return aufenthaltListe;
-    } 
+    } //verwndet in class RunDB
     
     public static List <Patlog> patientToAufenthaltDB (List<Aufenthalte> aufenthaltListe ){ //verwendet updateAufenthalte
         
@@ -222,7 +215,7 @@ public class Datenbank {
             myPatlogs.add(p_log);
         }
         return myPatlogs;
-    } 
+    } //verwendet in class RunDB
     
     public static void updateAufenthalte (List <Aufenthalte> meineAufenthalte) {
          
@@ -291,7 +284,7 @@ public class Datenbank {
                 }  
             }
         }
-    } 
+    } //Verwendet in class RunDB
     
     public static void deletePatQueue (List <Patienten> meinePat){
         
@@ -301,13 +294,10 @@ public class Datenbank {
         
         try {
             stmt = con.createStatement();
-            //rs = stmt.executeQuery("SELECT * FROM " + dbTbl);
-            //while (rs.next()){
-                String delString = "DELETE FROM " + dbTbl + ";";
-                System.out.println(delString);
-                int dbresponse = stmt.executeUpdate(delString);
-                System.out.println("Löschen: " + dbresponse);
-            //}
+            String delString = "DELETE FROM " + dbTbl + ";";
+            System.out.println(delString);
+            int dbresponse = stmt.executeUpdate(delString);
+            System.out.println("Löschen: " + dbresponse);   
         }catch(SQLException ex ){
             System.out.println(ex);
         }
@@ -352,7 +342,7 @@ public class Datenbank {
             }  
         }
         return patlogsDB;
-    }
+    } //verwendet in class GUI1
    
 } 
    
