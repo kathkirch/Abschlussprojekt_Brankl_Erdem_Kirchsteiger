@@ -24,59 +24,38 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel_Vname" min="-2" pref="152" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextField_Vname" min="-2" pref="186" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel_ID" min="-2" pref="109" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                              <Component id="jTextField_ID" min="-2" pref="186" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="141" pref="396" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel_Aufdat" min="-2" pref="152" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextField_Aufdat" min="-2" pref="186" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel_Nname" min="-2" pref="152" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextField_Nname" min="-2" pref="186" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel_AZ" min="-2" pref="152" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jComboBox_Aufdat_dd" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jComboBox_Aufdat_mm" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jComboBox_Aufdat_yyyy" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jTextField_AZ" min="-2" pref="186" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jButton_AddPatient" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel1" min="-2" pref="226" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel_Vname" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="jLabel_Nname" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="jLabel_AZ" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="jLabel_Aufdat" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jComboBox_Aufdat_dd" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jComboBox_Aufdat_mm" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jComboBox_Aufdat_yyyy" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jTextField_AZ" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextField_Nname" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextField_Vname" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="218" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,43 +63,35 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Component id="jButton_AddPatient" min="-2" pref="57" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel_ID" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField_ID" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel_Vname" min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="jTextField_Vname" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                              <Component id="jLabel_Nname" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jTextField_Nname" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel_AZ" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jTextField_AZ" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jLabel_Aufdat" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jButton_AddPatient" pref="57" max="32767" attributes="0"/>
+                  <Component id="jLabel1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel_Vname" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="jTextField_Vname" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel_Nname" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField_Nname" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel_AZ" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="jTextField_AZ" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel_Aufdat" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jComboBox_Aufdat_dd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox_Aufdat_mm" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox_Aufdat_yyyy" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jTextField_Aufdat" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jComboBox_Aufdat_dd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox_Aufdat_mm" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox_Aufdat_yyyy" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -139,42 +110,65 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel_Vname">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Vorname:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel_ID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ID: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel_Nname">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Nachname:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel_AZ">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="AZ (Aufnahmezahl):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel_Aufdat">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Aufnahmedatum:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField_ID">
-    </Component>
     <Component class="javax.swing.JTextField" name="jTextField_Vname">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_VnameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_AZ">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_Nname">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox_Aufdat_dd">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="31">
             <StringItem index="0" value="01"/>
@@ -217,6 +211,9 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox_Aufdat_mm">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="12">
             <StringItem index="0" value="01"/>
@@ -240,6 +237,9 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox_Aufdat_yyyy">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="16" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
             <StringItem index="0" value="2020"/>
@@ -252,7 +252,13 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField_Aufdat">
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="24" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Patientenaufnahme"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
