@@ -22,7 +22,7 @@ import javax.swing.JTable;
  *
  * @author ceran
  */
-public class GUI2 {
+public class GUI2 extends Thread{
     
     JFrame frame = new JFrame("AUFENTHALTE");
     String[] columns = new String[] {"Aufnahme Datum", "Vorname", "Nachname", "AZ", "Mod.At"};
@@ -59,11 +59,11 @@ public class GUI2 {
 
     public GUI2() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 700);
+        frame.setSize(600, 500);
         
         JScrollPane js = new JScrollPane(tableModel);
 
-        tableModel.setPreferredSize(new Dimension(700,800));
+        tableModel.setPreferredSize(new Dimension(700,1800));
         tableModel.setFillsViewportHeight(true);
         
         if (tableModel.getPreferredSize().getHeight() < js.getPreferredSize().getHeight()){
@@ -92,7 +92,7 @@ public class GUI2 {
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                System.out.println("BLBLBLBLBLBLBLBL");
+                
             }
         });
         
