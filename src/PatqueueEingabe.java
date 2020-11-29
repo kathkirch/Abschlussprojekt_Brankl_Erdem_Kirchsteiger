@@ -237,3 +237,4 @@ public class PatqueueEingabe extends javax.swing.JFrame implements Runnable {
         new PatqueueEingabe().setVisible(true); 
     }
 
+}
