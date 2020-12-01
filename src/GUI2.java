@@ -9,7 +9,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,6 +38,7 @@ public class GUI2 extends Thread{
 
     Object [][] data = initAufenthalte(myAufenthalte);
     JTable tableModel = new JTable(data, columns);
+    
     JPanel panel = new JPanel(); 
     JPanel panel2 = new JPanel(); 
     JLabel label = new JLabel("Sortierung");
@@ -64,6 +72,7 @@ public class GUI2 extends Thread{
         JScrollPane js = new JScrollPane(tableModel);
 
         tableModel.setPreferredSize(new Dimension(700,1800));
+        tableModel.setAutoCreateRowSorter(true);
         tableModel.setFillsViewportHeight(true);
         
         if (tableModel.getPreferredSize().getHeight() < js.getPreferredSize().getHeight()){
@@ -71,20 +80,56 @@ public class GUI2 extends Thread{
         }
         
         tableModel.setEnabled(false);
-        radioButton1.setSelected(true);
+        radioButton1.setSelected(false);
         
         js.setVisible(true);
 
+        
         radioButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                radioButton2.setSelected(false);
+                
+                Collections.sort(myAufenthalte, new Comparator<Aufenthalte>(){
+                  
+                    public int compare(Aufenthalte a1, Aufenthalte a2){
+                        int c = extractInt(a1.getAz()) - extractInt(a2.getAz());
+                        return c;
+                    }
+                    int extractInt(String s) {
+                        return s.isEmpty() ? 0 : Integer.parseInt(s);
+                    }
+                });
+                               
+               data = initAufenthalte(myAufenthalte);
+               tableModel.setModel(new DefaultTableModel(data, columns));
+                
+               radioButton2.setSelected(false);
             }
         });
         
         radioButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                
+                Collections.sort(myAufenthalte, new Comparator<Aufenthalte> () {
+                
+                    public int compare(Aufenthalte a1, Aufenthalte a2){
+                        int c = a1.getNachname().compareTo(a2.getNachname());
+                        
+                        if (c == 0){
+                            a1.getVorname().compareTo(a2.getVorname());
+                        } 
+                        
+                        if (c == 0) {
+                            a1.getAufdat().compareTo(a2.getAufdat());
+                        }
+                        return c;
+                    } 
+                    
+                });
+                data = initAufenthalte(myAufenthalte);
+                tableModel.setModel(new DefaultTableModel(data, columns));
+                
                 radioButton1.setSelected(false);
             }
         });
@@ -92,7 +137,12 @@ public class GUI2 extends Thread{
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                List <Aufenthalte> myAufenthalte = Datenbank.readAufenthalteDB();
+                data = initAufenthalte(myAufenthalte);
                 
+                tableModel.setModel(new DefaultTableModel(data, columns)); 
+                radioButton1.setSelected(false);
+                radioButton1.setSelected(false);
             }
         });
         

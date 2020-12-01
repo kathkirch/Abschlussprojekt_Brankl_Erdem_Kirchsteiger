@@ -51,6 +51,7 @@ public class App {
         g1.start();
         g2.start();
 
-        //myDB.dbSchliessen();
+        //Datenbank.dbSchliessen();
+        
     } 
 }

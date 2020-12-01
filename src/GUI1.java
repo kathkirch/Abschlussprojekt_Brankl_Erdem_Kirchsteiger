@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -64,7 +65,7 @@ public class GUI1 extends Thread {
         
         JScrollPane js = new JScrollPane(tableModel);
 
-        tableModel.setPreferredSize(new Dimension(700,1500));
+        tableModel.setPreferredSize(new Dimension(700,1800));
         tableModel.setFillsViewportHeight(true);
         
         if (tableModel.getPreferredSize().getHeight() < js.getPreferredSize().getHeight()){
@@ -80,6 +81,7 @@ public class GUI1 extends Thread {
         radioButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                
                 radioButton2.setSelected(false); 
             }
         });
@@ -87,6 +89,7 @@ public class GUI1 extends Thread {
         radioButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                
                 radioButton1.setSelected(false);
             }
         });
@@ -95,6 +98,9 @@ public class GUI1 extends Thread {
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                System.out.println("Refresh");
+                Object [][] data = initPatlogs(myPatlogs);
+                tableModel.setModel(new DefaultTableModel(data, columns));
             }
         });
 
