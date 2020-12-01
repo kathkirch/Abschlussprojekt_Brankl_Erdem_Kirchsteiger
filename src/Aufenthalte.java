@@ -1,13 +1,4 @@
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,7 +14,6 @@ import java.util.List;
 
 import java.util.Date;
 import java.text.SimpleDateFormat; 
-import java.time.format.DateTimeFormatter;
 
 public class Aufenthalte extends Patienten {
     
@@ -52,4 +42,5 @@ public class Aufenthalte extends Patienten {
     public String toString(){
         return super.toString() + " | letzte Änderung: " + moddat; 
     }
+  
 }
