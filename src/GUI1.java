@@ -44,9 +44,13 @@ public class GUI1 extends Thread {
     JRadioButton radioButton2 = new JRadioButton();
     
     public Object [][] initPatlogs(List <Patlog> patlogs){
+        //Neues Object Array wird erzeugt
         Object [][] data = new Object[patlogs.size()][];
         
+        //Hilfscounter
         int i = 0;
+        
+        //durch die List<Patlog> patlogs iterieren, jedes Patlog Objekt in data speichern
         for(Patlog p : patlogs){
             data[i] = new Object[]{p.getModdat(), p.getAktion(), p.getAz()};
             i = i + 1;

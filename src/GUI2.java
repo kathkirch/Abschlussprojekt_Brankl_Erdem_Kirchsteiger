@@ -50,9 +50,13 @@ public class GUI2 extends Thread{
     JRadioButton radioButton2 = new JRadioButton();
     
     public Object [][] initAufenthalte(List <Aufenthalte> aufenthalte){
+        //neues Objekt Array erzeugen
         Object [][] data = new Object[aufenthalte.size()][];
         
+        //Hilfscounter erzeugen
         int i = 0;
+        
+        //durch List <Aufenthalte> iterieren, jedes Aufenthalte-Objekt in data speichern
         for(Aufenthalte a : aufenthalte){
             data[i] = new Object[]{a.getAufdat(), a.getVorname(), a.getNachname(),
                                     a.getAz(), a.getModdat()};

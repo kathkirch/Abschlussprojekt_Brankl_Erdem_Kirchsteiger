@@ -135,15 +135,15 @@ public class Datenbank {
         return aufenthalteDB;
     }  //verwendet in GUI2
      
-    public static List <Aufenthalte> patientToAufenthalt (List<Patienten> meinePat) { //verwendet deletePatQueue();
+    public static List <Aufenthalte> patientToAufenthalt (List<Patienten> patListe) { //verwendet deletePatQueue();
         
         //erstellt neue Liste vom Typ Aufenthalte
         List <Aufenthalte> aufenthaltListe = new ArrayList<>();
         
         //for-Schleife die jedes PatientenObjekt in 'meinePat-Liste' ausliest
         
-        if(!meinePat.isEmpty()){
-            for (Patienten p : meinePat){
+        if(!patListe.isEmpty()){
+            for (Patienten p : patListe){
                 
                 //Werte von Patient lesen und in neue Variable speichern
                 int a_id = p.getId();
@@ -169,8 +169,8 @@ public class Datenbank {
                 //AufenthaltObjekt zur AufenthaltListe hinzufügen
                 aufenthaltListe.add(a);
             }
-            deletePatQueue(meinePat);
-            meinePat.clear();
+            deletePatQueue(patListe);
+            patListe.clear();
         }        
         return aufenthaltListe;
     } //verwndet in class RunDB
@@ -180,6 +180,7 @@ public class Datenbank {
         Statement stmt = null; 
         List <Patlog> myPatlogs = new ArrayList<>();
        
+        // durch List <Aufenthalte> aufenthaltListe iterieren, jedes Aufenthalte-Objekt als ein Patlog Objekt speichern
         for (Aufenthalte a : aufenthaltListe){
             Patlog p_log = new Patlog();
             try{
@@ -191,12 +192,15 @@ public class Datenbank {
                 stmt.executeUpdate(s);
                 System.out.println(s);
                 p_log.setAktion(PatlogAktion.insert);
-               
+            
+            //Fehlerbehebung falls AZ schon in DB vorhanden
             }catch(SQLIntegrityConstraintViolationException icve  ){
                 System.out.println("Eintrag mit AZ bereits vorhanden!" + 
                                     " Daten werden akutalisiert!");
                 
+                //Methode um Aufenthalte zu aktualisieren wird aufgerufen
                 updateAufenthalte(aufenthaltListe); 
+                
                 p_log.setAktion(PatlogAktion.update);
                  
             }catch(SQLException ex){
@@ -212,17 +216,19 @@ public class Datenbank {
             }
             p_log.setAz(a.getAz());
             p_log.setModdat(a.getModdat());
+            //Patlog Element der List <Patlog> myPatlogs hinzufügen
             myPatlogs.add(p_log);
         }
         return myPatlogs;
     } //verwendet in class RunDB
     
-    public static void updateAufenthalte (List <Aufenthalte> meineAufenthalte) {
+    public static void updateAufenthalte (List <Aufenthalte> aufenthaltListe) {
          
         Statement stmt = null;
         ResultSet rs = null;
         
-        for (Aufenthalte a : meineAufenthalte){
+        //iteriert durch List <Aufenthalte> aufenthaltListe
+        for (Aufenthalte a : aufenthaltListe){
             try{
                 stmt = con.createStatement();
                 String dbTbl = "aufenthalte";
@@ -259,11 +265,12 @@ public class Datenbank {
         
         Statement stmt = null; 
         
+        //iteriert durch List<Patlog> myPatlogs speichert die Attribute in einen String
         for (Patlog pl : myPatlogs) {
             String plDateDB = pl.getModdat();
             String plAktionDB = pl.getAktion();
             String plAzDB = pl.getAz();
-        
+            
             try {
                 stmt = con.createStatement();
                 String s = "insert into patlog (Zeitpunkt, Aktion, AZ) values "
