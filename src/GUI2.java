@@ -70,23 +70,23 @@ public class GUI2 extends Thread{
 
     public GUI2() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 9500);
-        frame.setResizable(false);
+        frame.setSize(700, 950);
+        frame.setResizable(true);
         
         JScrollPane js = new JScrollPane(tableModel);
-        
-        tableModel.setPreferredScrollableViewportSize(new Dimension(750, 800));
+
+        tableModel.setPreferredScrollableViewportSize(new Dimension(650, 700));
         tableModel.setFillsViewportHeight(true);
-        tableModel.setRowHeight(30);
+        tableModel.setRowHeight(25);
         tableModel.setAutoCreateRowSorter(true);
         
         TableColumnModel columnModel = tableModel.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(50);
-        columnModel.getColumn(1).setPreferredWidth(50);
-        columnModel.getColumn(2).setPreferredWidth(50);
-        columnModel.getColumn(3).setPreferredWidth(50);
-
-        tableModel.setPreferredSize(new Dimension(700,1800));
+        columnModel.getColumn(0).setPreferredWidth(20);
+        columnModel.getColumn(1).setPreferredWidth(30);
+        columnModel.getColumn(2).setPreferredWidth(25);
+        columnModel.getColumn(3).setPreferredWidth(30);
+        
+        tableModel.setPreferredSize(new Dimension(650,2800));
         tableModel.setAutoCreateRowSorter(true);
         tableModel.setFillsViewportHeight(true);
         
@@ -132,11 +132,11 @@ public class GUI2 extends Thread{
                         int c = a1.getNachname().compareTo(a2.getNachname());
                         
                         if (c == 0){
-                            a1.getVorname().compareTo(a2.getVorname());
+                            c = a1.getVorname().compareTo(a2.getVorname());
                         } 
                         
                         if (c == 0) {
-                            a1.getAufdat().compareTo(a2.getAufdat());
+                           c = a1.getAufdat().compareTo(a2.getAufdat());
                         }
                         return c;
                     } 

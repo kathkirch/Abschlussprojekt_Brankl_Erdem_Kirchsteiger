@@ -65,17 +65,17 @@ public class GUI1 extends Thread {
     public GUI1() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 9500);
-        frame.setResizable(false);
+        frame.setSize(700, 950);
+        frame.setResizable(true);
         
         JScrollPane js = new JScrollPane(tableModel);
 
-        tableModel.setPreferredScrollableViewportSize(new Dimension(750, 800));
+        tableModel.setPreferredScrollableViewportSize(new Dimension(650, 700));
         tableModel.setFillsViewportHeight(true);
-        tableModel.setRowHeight(30);
+        tableModel.setRowHeight(25);
         tableModel.setAutoCreateRowSorter(true);
         
-        tableModel.setPreferredSize(new Dimension(700,1800));
+        tableModel.setPreferredSize(new Dimension(650,3800));
         tableModel.setAutoCreateRowSorter(true);
         tableModel.setFillsViewportHeight(true);
         
