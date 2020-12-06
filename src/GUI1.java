@@ -28,14 +28,14 @@ public class GUI1 extends Thread {
     JFrame frame = new JFrame("LOGS");
     String[] columns = new String[] {"Zeitpunkt", "Aktion", "AZ"};
      
-//TODO:////////// HERE YOU CAN ADD YOUR DATA!!!////////////////////////////////////////////////////////////////////////
-    
+
+    //List<Patlog> erzeugen danach in Object Array data übergeben mit initPatlogs();
     List <Patlog> myPatlogs = Datenbank.readPatlog();
-    
     Object [][] data = initPatlogs(myPatlogs);
+    
     JTable tableModel = new JTable(data, columns);
-    JPanel panel = new JPanel(); // the panel is not visible in output
-    JPanel panel2 = new JPanel(); // the panel is not visible in output
+    JPanel panel = new JPanel(); 
+    JPanel panel2 = new JPanel(); 
     JLabel label = new JLabel("Alle");
     JLabel label2 = new JLabel("Nur Akt");
     JButton refresh = new JButton("Refresh");
@@ -65,11 +65,18 @@ public class GUI1 extends Thread {
     public GUI1() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 500);
+        frame.setSize(800, 9500);
+        frame.setResizable(false);
         
         JScrollPane js = new JScrollPane(tableModel);
 
+        tableModel.setPreferredScrollableViewportSize(new Dimension(750, 800));
+        tableModel.setFillsViewportHeight(true);
+        tableModel.setRowHeight(30);
+        tableModel.setAutoCreateRowSorter(true);
+        
         tableModel.setPreferredSize(new Dimension(700,1800));
+        tableModel.setAutoCreateRowSorter(true);
         tableModel.setFillsViewportHeight(true);
         
         if (tableModel.getPreferredSize().getHeight() < js.getPreferredSize().getHeight()){
@@ -81,7 +88,7 @@ public class GUI1 extends Thread {
         
         js.setVisible(true);
         
-//TODO:////////// HERE YOU CAN FILTER YOUR DATA!!!//////////////////////////////////////////////////////////////////////
+
         radioButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -98,7 +105,7 @@ public class GUI1 extends Thread {
             }
         });
 
-//TODO://///////////// HERE YOU CAN ADD DATA FROM YOUR DATA BASE ///////////////////////////////////////////////////////
+
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {

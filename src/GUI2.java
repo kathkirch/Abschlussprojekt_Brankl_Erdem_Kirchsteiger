@@ -9,8 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -32,13 +31,13 @@ import javax.swing.table.DefaultTableModel;
 public class GUI2 extends Thread{
     
     JFrame frame = new JFrame("AUFENTHALTE");
-    String[] columns = new String[] {"Aufnahme Datum", "Vorname", "Nachname", "AZ", "Mod.At"};
+    String[] columns = new String[] {"Aufnahme Datum", "Nachname", "Vorname", "AZ", "Mod.At"};
     
+    // neue List <Aufenthalte erzeugen, in Object Array data übergeben mit initAufenthalte();>
     List <Aufenthalte> myAufenthalte = Datenbank.readAufenthalteDB();
-
     Object [][] data = initAufenthalte(myAufenthalte);
-    JTable tableModel = new JTable(data, columns);
     
+    JTable tableModel = new JTable(data, columns);
     JPanel panel = new JPanel(); 
     JPanel panel2 = new JPanel(); 
     JLabel label = new JLabel("Sortierung");
@@ -58,7 +57,7 @@ public class GUI2 extends Thread{
         
         //durch List <Aufenthalte> iterieren, jedes Aufenthalte-Objekt in data speichern
         for(Aufenthalte a : aufenthalte){
-            data[i] = new Object[]{a.getAufdat(), a.getVorname(), a.getNachname(),
+            data[i] = new Object[]{a.getAufdat(), a.getNachname(), a.getVorname(),
                                     a.getAz(), a.getModdat()};
             i = i + 1;
         }
@@ -71,9 +70,21 @@ public class GUI2 extends Thread{
 
     public GUI2() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 500);
+        frame.setSize(800, 9500);
+        frame.setResizable(false);
         
         JScrollPane js = new JScrollPane(tableModel);
+        
+        tableModel.setPreferredScrollableViewportSize(new Dimension(750, 800));
+        tableModel.setFillsViewportHeight(true);
+        tableModel.setRowHeight(30);
+        tableModel.setAutoCreateRowSorter(true);
+        
+        TableColumnModel columnModel = tableModel.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(50);
+        columnModel.getColumn(1).setPreferredWidth(50);
+        columnModel.getColumn(2).setPreferredWidth(50);
+        columnModel.getColumn(3).setPreferredWidth(50);
 
         tableModel.setPreferredSize(new Dimension(700,1800));
         tableModel.setAutoCreateRowSorter(true);
