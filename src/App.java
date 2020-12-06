@@ -1,4 +1,7 @@
 
+import javax.swing.SwingUtilities;
+
+
 
 
 
@@ -43,10 +46,13 @@ public class App {
         //////////////////////////////////////Programm 2b GUI Masken//////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-        Thread g1 = new GUI1();
-        Thread g2 = new GUI2();
-        g1.start();
-        g2.start();
+        SwingUtilities.invokeLater(new Runnable() {
+              @Override
+              public void run() {
+                new GUI1();
+                new GUI2();
+              }
+            });
 
         //Datenbank.dbSchliessen();
         
