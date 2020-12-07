@@ -4,18 +4,23 @@
  * and open the template in the editor.
  */
 
+/**
+ * @author Brankl
+ */
 import java.sql.*;
 import javax.swing.*;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class PatqueueEingabe extends javax.swing.JFrame implements Runnable {
 
     private static Connection con;
-    
+
     public PatqueueEingabe() {
         initComponents();
     }
 
+////////////////////////////////////////////////////////////////////////////////
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -35,6 +40,11 @@ public class PatqueueEingabe extends javax.swing.JFrame implements Runnable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton_AddPatient.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jButton_AddPatient.setText("Patient hinzufügen");
@@ -143,63 +153,76 @@ public class PatqueueEingabe extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField_VnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_VnameActionPerformed
-       
-    }//GEN-LAST:event_jTextField_VnameActionPerformed
- 
 
-    private static void dbVerbinden2() {
+    }//GEN-LAST:event_jTextField_VnameActionPerformed
+
+////////////////////////////////////////////////////////////////////////////////
+    public static void dbVerbinden2() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Jdbc Treiber geladen");
             con = DriverManager.getConnection("jdbc:mysql://10.25.2.145:3306/branklth19?user=branklth19&password=geb19&serverTimezone=CET");
             System.out.println("Verbindung zur DB hergestellt");
-        }catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
             System.exit(1);
         }
     }
-    
-    private void initPatqueue () {
-        
+
+    private void initPatqueue() {
+
         dbVerbinden2();
-        
-        try { 
-        
-            Statement stmt = con.createStatement();
 
-            String Aufdat_Tag = String.valueOf(jComboBox_Aufdat_dd.getSelectedItem());
-            String Aufdat_Monat = String.valueOf(jComboBox_Aufdat_mm.getSelectedItem());
-            String Aufdat_Jahr = String.valueOf(jComboBox_Aufdat_yyyy.getSelectedItem());
-            String Aufdat = Aufdat_Jahr + "-" + Aufdat_Monat + "-" + Aufdat_Tag;
+        try {
 
-            System.out.println(Aufdat);
+            if (jTextField_Vname.getText().isEmpty() | jTextField_Nname.getText().isEmpty() | jTextField_AZ.getText().isEmpty()) {
 
-            String patqueueEntry = "INSERT INTO patqueue (Vorname, Nachname, AZ, Aufdat) VALUES "
-                    + "('"+jTextField_Vname.getText()+"',"
-                    + " '"+jTextField_Nname.getText()+"',"
-                    + " '"+jTextField_AZ.getText()+"',"
-                    + " '"+Aufdat+"')";
-        
-        stmt.execute(patqueueEntry);
-        
-        JOptionPane.showMessageDialog (null, "Der Patient wurde hinzugefügt.");
-        
-        jTextField_Vname.setText(null);
-        jTextField_Nname.setText(null);
-        jTextField_AZ.setText(null);
-       
-       }
-        catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Achtung! Ein oder mehrere Textfelder sind leer!");
+
+            } else {
+
+                String Aufdat_Tag = String.valueOf(jComboBox_Aufdat_dd.getSelectedItem());
+                String Aufdat_Monat = String.valueOf(jComboBox_Aufdat_mm.getSelectedItem());
+                String Aufdat_Jahr = String.valueOf(jComboBox_Aufdat_yyyy.getSelectedItem());
+                String Aufdat = Aufdat_Jahr + "-" + Aufdat_Monat + "-" + Aufdat_Tag;
+
+                Statement stmt = con.createStatement();
+
+                String patqueueEntry = "INSERT INTO patqueue (Vorname, Nachname, AZ, Aufdat) VALUES "
+                        + "('" + jTextField_Vname.getText() + "',"
+                        + " '" + jTextField_Nname.getText() + "',"
+                        + " '" + jTextField_AZ.getText() + "',"
+                        + " '" + Aufdat + "')";
+
+                stmt.execute(patqueueEntry);
+
+                JOptionPane.showMessageDialog(null, "Der Patient wurde hinzugefügt.");
+
+                jTextField_Vname.setText(null);
+                jTextField_Nname.setText(null);
+                jTextField_AZ.setText(null);
+            }
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
-    
+
     }
 
+////////////////////////////////////////////////////////////////////////////////
     private void jButton_AddPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AddPatientActionPerformed
 
         initPatqueue();
     }//GEN-LAST:event_jButton_AddPatientActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        {
+            Datenbank.dbSchliessen();
+            System.out.println("Die Datenbankverbindung wurde beendet.");
+        }
+
+    }//GEN-LAST:event_formWindowClosing
+
+////////////////////////////////////////////////////////////////////////////////
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_AddPatient;
     private javax.swing.JComboBox<String> jComboBox_Aufdat_dd;
@@ -215,6 +238,7 @@ public class PatqueueEingabe extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField jTextField_Vname;
     // End of variables declaration//GEN-END:variables
 
+////////////////////////////////////////////////////////////////////////////////
     @Override
     public void run() {
         try {
@@ -233,8 +257,8 @@ public class PatqueueEingabe extends javax.swing.JFrame implements Runnable {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PatqueueEingabe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-        new PatqueueEingabe().setVisible(true); 
+
+        new PatqueueEingabe().setVisible(true);
     }
 
 }

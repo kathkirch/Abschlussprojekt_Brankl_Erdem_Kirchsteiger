@@ -8,7 +8,7 @@
 
 /**
  *
- * @author Katharina
+ * @author Kirchsteiger
  */
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -54,6 +54,8 @@ public class Datenbank {
             System.out.println(ex);
         }
     } // verwendet in class APP
+    
+    
     
     public static List <Patienten> patqueueAuslesen() { 
         
@@ -350,22 +352,36 @@ public class Datenbank {
         }
         return patlogsDB;
     } //verwendet in class GUI1
+    
+    /**
+     * @ author Brankl
+     */
+    public static Connection getConnection() {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://10.25.2.145:3306/branklth19?user=branklth19&password=geb19&serverTimezone=CET");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return con;
+    }
+ 
    
-} 
-   
-    /*
-    public void deleteDB(){
+    
+    public static void deleteDB(){
         
         Statement stmt = null; 
         ResultSet rs = null;
         
-        String dbTbl = "aufenthalte";
+        String dbTbl = "patlog";
         
         try {
             stmt = con.createStatement();
             
-                    
-            String delString = "DELETE FROM " + dbTbl + " WHERE ID='" + 90 + "'";
+            String delString = "DELETE FROM " + dbTbl + " WHERE ID='" + 61 + "'";
+            
+            //String delString = "DELETE FROM " + dbTbl + " WHERE ID='"+287+"';";
+            //String delString = "DELETE FROM " + dbTbl + " WHERE V='" + 90 + "'";
 
             System.out.println(delString);
             int dbresponse = stmt.executeUpdate(delString);
@@ -374,8 +390,8 @@ public class Datenbank {
         }catch(SQLException ex){
             System.out.println(ex);
         }
-    }  */
-    
+    }  
+}    
         
         
 

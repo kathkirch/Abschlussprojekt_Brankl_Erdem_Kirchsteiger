@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Katharina
+ * @author Kirchsteiger
  */
 public class RunDB extends Thread{
     

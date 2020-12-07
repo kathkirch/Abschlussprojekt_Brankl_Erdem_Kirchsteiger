@@ -33,9 +33,11 @@ public class GUI2 extends Thread{
     JFrame frame = new JFrame("AUFENTHALTE");
     String[] columns = new String[] {"Aufnahme Datum", "Nachname", "Vorname", "AZ", "Mod.At"};
     
-    // neue List <Aufenthalte erzeugen, in Object Array data übergeben mit initAufenthalte();>
+    // neue List <Aufenthalte erzeugen, in Object Array 'data' übergeben mit initAufenthalte();>
     List <Aufenthalte> myAufenthalte = Datenbank.readAufenthalteDB();
     Object [][] data = initAufenthalte(myAufenthalte);
+    static Object [][] refreshData;
+    
     
     JTable tableModel = new JTable(data, columns);
     JPanel panel = new JPanel(); 
@@ -48,6 +50,9 @@ public class GUI2 extends Thread{
     JRadioButton radioButton1 = new JRadioButton();
     JRadioButton radioButton2 = new JRadioButton();
     
+    /**
+     * @ author Kirchsteiger
+     */
     public Object [][] initAufenthalte(List <Aufenthalte> aufenthalte){
         //neues Objekt Array erzeugen
         Object [][] data = new Object[aufenthalte.size()][];
@@ -63,11 +68,11 @@ public class GUI2 extends Thread{
         }
         return data;
     }
-    
-    public void setObject(Object[][] dataFromOut) {
-        data = dataFromOut;
-    }
 
+/**
+ * @ author Erdem
+ */    
+   
     public GUI2() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(700, 950);
@@ -104,6 +109,9 @@ public class GUI2 extends Thread{
             @Override
             public void actionPerformed(final ActionEvent e) {
                 
+                /**
+                *@ author Kirchsteiger
+                */
                 Collections.sort(myAufenthalte, new Comparator<Aufenthalte>(){
                   
                     public int compare(Aufenthalte a1, Aufenthalte a2){
@@ -114,17 +122,30 @@ public class GUI2 extends Thread{
                         return s.isEmpty() ? 0 : Integer.parseInt(s);
                     }
                 });
-                               
-               data = initAufenthalte(myAufenthalte);
-               tableModel.setModel(new DefaultTableModel(data, columns));
+                
+                if (data.length >= refreshData.length){
+                    data = initAufenthalte(myAufenthalte);
+                    tableModel.setModel(new DefaultTableModel(data, columns));
+                
+                }else if (data.length < refreshData.length){
+                    refreshData = initAufenthalte(myAufenthalte);
+                    tableModel.setModel(new DefaultTableModel(refreshData, columns));
+                
+                }
                 
                radioButton2.setSelected(false);
             }
         });
         
+        /**
+         * @ author Erdem
+         */
         radioButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                /**
+                 * @author Kirchsteiger
+                 */
                 
                 Collections.sort(myAufenthalte, new Comparator<Aufenthalte> () {
                 
@@ -140,26 +161,42 @@ public class GUI2 extends Thread{
                         }
                         return c;
                     } 
-                    
                 });
-                data = initAufenthalte(myAufenthalte);
-                tableModel.setModel(new DefaultTableModel(data, columns));
+                if (data.length >= refreshData.length){
+                    data = initAufenthalte(myAufenthalte);
+                    tableModel.setModel(new DefaultTableModel(data, columns));
                 
+                }else if (data.length < refreshData.length){
+                    refreshData = initAufenthalte(myAufenthalte);
+                    tableModel.setModel(new DefaultTableModel(refreshData, columns));
+                
+                }
                 radioButton1.setSelected(false);
             }
         });
         
+        /**
+         * @ author Erdem
+         */
+        
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                List <Aufenthalte> myAufenthalte = Datenbank.readAufenthalteDB();
-                data = initAufenthalte(myAufenthalte);
+                /**
+                 * @ author Kirchsteiger
+                 */
+                myAufenthalte = Datenbank.readAufenthalteDB();
+                refreshData = initAufenthalte(myAufenthalte);
                 
-                tableModel.setModel(new DefaultTableModel(data, columns)); 
+                tableModel.setModel(new DefaultTableModel(refreshData, columns)); 
                 radioButton1.setSelected(false);
                 radioButton1.setSelected(false);
             }
         });
+        
+        /**
+         * @author Erdem
+         */
         
         panel.add(label); //Components Added using Flow Layout
         panel.add(radioButton1);
