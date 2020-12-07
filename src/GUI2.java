@@ -86,7 +86,7 @@ public class GUI2 extends Thread{
         columnModel.getColumn(2).setPreferredWidth(25);
         columnModel.getColumn(3).setPreferredWidth(30);
         
-        tableModel.setPreferredSize(new Dimension(650,2800));
+        tableModel.setPreferredSize(new Dimension(650,3800));
         tableModel.setAutoCreateRowSorter(true);
         tableModel.setFillsViewportHeight(true);
         
