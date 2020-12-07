@@ -8,7 +8,7 @@
 
 /**
  *
- * @author Katharina
+ * @author Kirchsteiger
  */
 
 

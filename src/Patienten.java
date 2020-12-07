@@ -1,10 +1,5 @@
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author Katharina
+ * @author Kirchsteiger
  */
 public class Patienten {
     

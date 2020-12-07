@@ -1,6 +1,4 @@
 
-import java.util.Date;
-import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author Katharina
+ * @author Kirchsteiger
  */
 public class Patlog extends Aufenthalte implements PatlogAktion {
     
