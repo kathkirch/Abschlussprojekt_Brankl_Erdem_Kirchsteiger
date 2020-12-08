@@ -30,7 +30,5 @@ public class Patlog extends Aufenthalte implements PatlogAktion {
     public String toString(){
         return " \n" + "ID: " + super.getId() + "| Zeitpunkt: " + super.getModdat()
                 + " | Aktion: " + aktion + " | AZ: " + super.getAz();
-    
     }
-    
 }

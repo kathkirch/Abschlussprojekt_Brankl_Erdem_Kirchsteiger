@@ -31,14 +31,19 @@ import javax.swing.table.TableColumnModel;
 public class GUI2 extends Thread{
     
     JFrame frame = new JFrame("AUFENTHALTE");
-    String[] columns = new String[] {"Aufnahme Datum", "Nachname", "Vorname", "AZ", "Mod.At"};
+    String[] columns = new String[] {"Aufnahme Datum", "Nachname", "Vorname", "AZ", "Mod.Dat"};
     
+    /**
+     * @ author Kirchsteiger
+     */
     // neue List <Aufenthalte erzeugen, in Object Array 'data' übergeben mit initAufenthalte();>
     List <Aufenthalte> myAufenthalte = Datenbank.readAufenthalteDB();
     Object [][] data = initAufenthalte(myAufenthalte);
     static Object [][] refreshData;
     
-    
+    /**
+     * @ author Erdem
+     */
     JTable tableModel = new JTable(data, columns);
     JPanel panel = new JPanel(); 
     JPanel panel2 = new JPanel(); 
@@ -75,23 +80,23 @@ public class GUI2 extends Thread{
    
     public GUI2() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700, 950);
+        frame.setSize(630, 680);
         frame.setResizable(true);
         
         JScrollPane js = new JScrollPane(tableModel);
 
-        tableModel.setPreferredScrollableViewportSize(new Dimension(650, 700));
+        tableModel.setPreferredScrollableViewportSize(new Dimension(570, 540));
         tableModel.setFillsViewportHeight(true);
         tableModel.setRowHeight(25);
         tableModel.setAutoCreateRowSorter(true);
         
         TableColumnModel columnModel = tableModel.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(20);
+        columnModel.getColumn(0).setPreferredWidth(30);
         columnModel.getColumn(1).setPreferredWidth(30);
-        columnModel.getColumn(2).setPreferredWidth(25);
+        columnModel.getColumn(2).setPreferredWidth(15);
         columnModel.getColumn(3).setPreferredWidth(30);
         
-        tableModel.setPreferredSize(new Dimension(650,2800));
+        tableModel.setPreferredSize(new Dimension(650,4000));
         tableModel.setAutoCreateRowSorter(true);
         tableModel.setFillsViewportHeight(true);
         
@@ -123,17 +128,19 @@ public class GUI2 extends Thread{
                     }
                 });
                 
-                if (data.length >= refreshData.length){
+                if(refreshData != null){
+                    if (data.length >= refreshData.length){
+                        data = initAufenthalte(myAufenthalte);
+                        tableModel.setModel(new DefaultTableModel(data, columns));
+                    }else if (data.length < refreshData.length){
+                        refreshData = initAufenthalte(myAufenthalte);
+                        tableModel.setModel(new DefaultTableModel(refreshData, columns));
+                    }
+                }else {
                     data = initAufenthalte(myAufenthalte);
                     tableModel.setModel(new DefaultTableModel(data, columns));
-                
-                }else if (data.length < refreshData.length){
-                    refreshData = initAufenthalte(myAufenthalte);
-                    tableModel.setModel(new DefaultTableModel(refreshData, columns));
-                
                 }
-                
-               radioButton2.setSelected(false);
+                radioButton2.setSelected(false);
             }
         });
         
@@ -146,7 +153,6 @@ public class GUI2 extends Thread{
                 /**
                  * @author Kirchsteiger
                  */
-                
                 Collections.sort(myAufenthalte, new Comparator<Aufenthalte> () {
                 
                     public int compare(Aufenthalte a1, Aufenthalte a2){
@@ -154,22 +160,24 @@ public class GUI2 extends Thread{
                         
                         if (c == 0){
                             c = a1.getVorname().compareTo(a2.getVorname());
-                        } 
-                        
+                        }
                         if (c == 0) {
                            c = a1.getAufdat().compareTo(a2.getAufdat());
                         }
                         return c;
                     } 
                 });
-                if (data.length >= refreshData.length){
+                if(refreshData != null){
+                    if (data.length >= refreshData.length){
+                        data = initAufenthalte(myAufenthalte);
+                        tableModel.setModel(new DefaultTableModel(data, columns));
+                    }else if (data.length < refreshData.length){
+                        refreshData = initAufenthalte(myAufenthalte);
+                        tableModel.setModel(new DefaultTableModel(refreshData, columns));
+                    }
+                }else {
                     data = initAufenthalte(myAufenthalte);
                     tableModel.setModel(new DefaultTableModel(data, columns));
-                
-                }else if (data.length < refreshData.length){
-                    refreshData = initAufenthalte(myAufenthalte);
-                    tableModel.setModel(new DefaultTableModel(refreshData, columns));
-                
                 }
                 radioButton1.setSelected(false);
             }
