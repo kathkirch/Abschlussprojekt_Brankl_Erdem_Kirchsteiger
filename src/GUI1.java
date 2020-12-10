@@ -77,17 +77,17 @@ public class GUI1 extends Thread {
     public GUI1() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700, 950);
+        frame.setSize(630, 680);
         frame.setResizable(true);
         
         JScrollPane js = new JScrollPane(tableModel);
 
-        tableModel.setPreferredScrollableViewportSize(new Dimension(650, 700));
+        tableModel.setPreferredScrollableViewportSize(new Dimension(570, 540));
         tableModel.setFillsViewportHeight(true);
         tableModel.setRowHeight(25);
         tableModel.setAutoCreateRowSorter(true);
         
-        tableModel.setPreferredSize(new Dimension(650,3800));
+        tableModel.setPreferredSize(new Dimension(650,4000));
         tableModel.setAutoCreateRowSorter(true);
         tableModel.setFillsViewportHeight(true);
         
@@ -132,17 +132,22 @@ public class GUI1 extends Thread {
                 
                 updatedList();
                 
-                 if (data.length >= refreshdata.length){
+                if (refreshdata != null){
+                    if ((refreshdata != null) && (data.length >= refreshdata.length)){
                     data = initPatlogs(filteredList);
                     tableModel.setModel(new DefaultTableModel(data, columns));
-                 } else if (data.length < refreshdata.length){
+                    }else if (data.length < refreshdata.length){
                     refreshdata = initPatlogs(filteredList);
                     tableModel.setModel(new DefaultTableModel(refreshdata, columns));
-                 }                
+                    }   
+                } else {
+                   data = initPatlogs(filteredList);
+                   tableModel.setModel(new DefaultTableModel(data, columns)); 
+                }             
             }
         });
 
-          /**
+        /**
          * @author Erdem
          */
         refresh.addActionListener(new ActionListener() {

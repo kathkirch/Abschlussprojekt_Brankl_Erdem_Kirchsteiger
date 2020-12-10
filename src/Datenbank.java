@@ -268,8 +268,9 @@ public class Datenbank {
         Statement stmt = null; 
         
         //iteriert durch List<Patlog> myPatlogs speichert die Attribute in einen String
+        //danach werden die Strings in der DB eingefügt 
         for (Patlog pl : myPatlogs) {
-            String plDateDB = pl.getModdat();
+            String plDateDB = pl.createModdat();
             String plAktionDB = pl.getAktion();
             String plAzDB = pl.getAz();
             
@@ -299,7 +300,6 @@ public class Datenbank {
         
         Statement stmt = null;
         String dbTbl = "patqueue";
-        ResultSet rs = null;
         
         try {
             stmt = con.createStatement();
@@ -355,7 +355,7 @@ public class Datenbank {
     
     /**
      * @ author Brankl
-     */
+    */
     public static Connection getConnection() {
         Connection con = null;
         try {
@@ -365,32 +365,6 @@ public class Datenbank {
         }
         return con;
     }
- 
-   
-    
-    public static void deleteDB(){
-        
-        Statement stmt = null; 
-        ResultSet rs = null;
-        
-        String dbTbl = "patlog";
-        
-        try {
-            stmt = con.createStatement();
-            
-            String delString = "DELETE FROM " + dbTbl + " WHERE ID='" + 61 + "'";
-            
-            //String delString = "DELETE FROM " + dbTbl + " WHERE ID='"+287+"';";
-            //String delString = "DELETE FROM " + dbTbl + " WHERE V='" + 90 + "'";
-
-            System.out.println(delString);
-            int dbresponse = stmt.executeUpdate(delString);
-            System.out.println("Löschen: " + dbresponse);
-
-        }catch(SQLException ex){
-            System.out.println(ex);
-        }
-    }  
 }    
         
         
